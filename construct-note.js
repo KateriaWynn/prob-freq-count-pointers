@@ -14,6 +14,7 @@ function makeFrequencyCounter(str, i = 0, freqObj = {}) {
 // msg and letters are both string variables
 
 function constructNote(msg, letters) {
+  if (msg.length === 0) return true;
   // if letters in msg
   // want both to be objects
 
@@ -31,7 +32,10 @@ function constructNote(msg, letters) {
   for (const letter in msgFreq) {
     // ensure both have the same value at that key
     if (letter in msgFreq && letter in lettersFreq) {
-      if (msgFreq[letter] === lettersFreq[letter]) {
+      if (
+        msgFreq[letter] === lettersFreq[letter] ||
+        lettersFreq[letter] > msgFreq[letter]
+      ) {
         return true;
       }
     }
